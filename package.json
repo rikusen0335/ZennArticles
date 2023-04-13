@@ -1,0 +1,11 @@
+{
+  "name": "ZennArticles",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rikusen0335/ZennArticles.git",
+  "author": "Soshi Homma <rikusen0335@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "zenn-cli": "^0.1.141"
+  }
+}
