@@ -225,7 +225,7 @@ RHFは、Formikに対して配列操作のためのAPIとしてuseFieldArrayを�
 import React from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 
-const Basic = () => {
+const Tags = () => {
   const { register, control, handleSubmit } = useForm()
   const { fields, append, remove } = useFieldArray({
     control,
@@ -261,5 +261,7 @@ const Basic = () => {
 - RHFはハマる部分が多少あるものの、柔軟性が高くOSSのUIライブラリなどに合わせやすい
 といった特徴を持っていることがわかるかと思います。
 
-特徴を捉えた使い方をすると、ブランドで持っているUIライブラリなどがある場合はFormikを、OSSなどの自作でないUIライブラリを使う場合はRHF、というような構成が良さそうです。
+特徴を捉えた使い方をすると、
+ブランドで持っているUIライブラリなどがある場合はFormikを、
+OSSなどの自作でないUIライブラリを使う場合はRHF、というような構成が良さそうです。
 ちなみに、筆者はFormikの古いバージョンにハマった経験があり、かつ今のAPIがあまり好みでないためRHFのほうが好きです。
