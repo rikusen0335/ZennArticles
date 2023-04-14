@@ -4,6 +4,7 @@ emoji: "🤨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Formik", "ReactHookForm", "React"]
 published: true
+publication_name: "omeroid"
 ---
 
 昨今のReact界隈では「FormikのほうがAPIが簡単で優秀だ」「React Hook Form（以下RHF）のほうがAPIがシンプルで使いやすい」などをよく聞くと思います（最近はその勢いも衰えていますが）。
