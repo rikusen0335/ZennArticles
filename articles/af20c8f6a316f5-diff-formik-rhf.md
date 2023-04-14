@@ -3,7 +3,7 @@ title: "FormikとReact Hook Formの違いを正しく理解する"
 emoji: "🤨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Formik", "ReactHookForm", "React"]
-published: false
+published: true
 ---
 
 昨今のReact界隈では「FormikのほうがAPIが簡単で優秀だ」「React Hook Form（以下RHF）のほうがAPIがシンプルで使いやすい」などをよく聞くと思います（最近はその勢いも衰えていますが）。
@@ -219,6 +219,47 @@ const DatePicker = () => {
 ```
 
 **タグフィールド**
+RHFは、Formikに対して配列操作のためのAPIとしてuseFieldArrayを持っています。そのため、ここだけのためにフィールドをカスタムコンポーネントを使う必要はありません。
+と言っても、リーダブルなコードを書こうとすると切り分けないといけなくはなりますが
 ```jsx
+import React from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
+const Basic = () => {
+  const { register, control, handleSubmit } = useForm()
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'tags',
+  })
+  const onSubmit = values => console.log(values)
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {fields.map((field, index) => (
+       <>
+          <input
+            key={field.id}
+            {...register(`tags.${index}.label`)}
+          />
+          <input
+            key={field.id}
+            {...register(`tags.${index}.value`)}
+          />
+          <button type="button" onClick={() => remove(index)}>Remove</button>
+        </>
+      ))}
+      <button type="button" onClick={() => append({ label: '', value: '' })}>Append</button>
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
 ```
+
+# まとめ
+今回比べたFormikとRHFですが、最初にも述べたことに補足して、
+- Formikは簡単で扱いやすいが、複雑な処理を書こうとすると難読化しやすい、やりづらい
+- RHFはハマる部分が多少あるものの、柔軟性が高くOSSのUIライブラリなどに合わせやすい
+といった特徴を持っていることがわかるかと思います。
+
+特徴を捉えた使い方をすると、ブランドで持っているUIライブラリなどがある場合はFormikを、OSSなどの自作でないUIライブラリを使う場合はRHF、というような構成が良さそうです。
+ちなみに、筆者はFormikの古いバージョンにハマった経験があり、かつ今のAPIがあまり好みでないためRHFのほうが好きです。
