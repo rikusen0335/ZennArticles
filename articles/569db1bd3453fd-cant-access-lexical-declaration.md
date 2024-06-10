@@ -10,16 +10,14 @@ published: true
 
 Child はコンポーネントだとします。
 
-components/organisms/index.ts
-
-```
+```tsx:components/organisms/index.ts
 export * from './Parent'
 export * from './Child'
 ```
 
 Parent.tsx
 
-```
+```tsx:Parent.tsx
 import { Child } from '@/components/organisms'
 
 export const Parent = () => {
@@ -27,9 +25,7 @@ export const Parent = () => {
 }
 ```
 
-Child.tsx
-
-```
+```tsx:Child.tsx
 export const Child = () => {
   return <p>hoge</p>
 }
@@ -38,9 +34,7 @@ export const Child = () => {
 これだとエラーになります。
 この場合、Parent の import 文を直してあげることで修正できます
 
-Parent.tsx
-
-```
+```tsx:Parent.tsx
 import { Child } from '@/components'
 
 export const Parent = () => {
