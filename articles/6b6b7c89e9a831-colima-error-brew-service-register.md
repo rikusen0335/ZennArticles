@@ -36,3 +36,8 @@ time="2024-06-10T11:20:15+09:00" level=fatal msg="dependency check failed for do
 ```
 
 今回はdockerをいれていないことが原因だったので、`brew install docker`をしてから`brew services restart colima`したら上手くいった。
+
+
+### 補足
+
+記事にするほどでもなさそうだが、一応...
